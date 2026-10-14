@@ -1,5 +1,5 @@
 'use strict';
-const BRIDGE_URL='REPLACE_WITH_NEW_APPS_SCRIPT_WEB_APP_URL';
+const BRIDGE_URL='https://script.google.com/macros/s/AKfycbxXaNZUPm04uqvfTVshrrnIh48iRVHS8VSOt3phswmP74UfPdJylHIxWXyBFnvU-t6O/exec';
 const bridgeNonce=crypto.randomUUID();
 let bridgePort=null,bridgeNextId=0;
 const bridgePending=new Map();
