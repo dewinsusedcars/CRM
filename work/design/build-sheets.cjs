@@ -42,6 +42,11 @@ fs.writeFileSync(path.join(docs,'account-install.js'),pwaAccount);
 const bridgeClient=fs.readFileSync(path.join(root,'sheets-bridge.js'),'utf8').replace(/^function rpc\(name,\.\.\.args\)\{.*\}\r?\n/m,'');
 if(bridgeClient.includes('google.script.run'))throw Error('PWA still calls google.script.run directly');
 fs.writeFileSync(path.join(docs,'app.js'),fs.readFileSync(path.join(root,'pwa-bridge.js'),'utf8')+'\n'+bridgeClient+'\n'+app+'\nrestoreRemote();');
+// This repository publishes GitHub Pages from main / (root). Keep that
+// deployment in sync with the generated docs bundle.
+for(const file of ['.nojekyll','index.html','style.css','catalog.js','attendance.js','account-install.js','app.js','manifest.webmanifest','icon-192.png','icon-512.png','sw.js']){
+  fs.copyFileSync(path.join(docs,file),path.resolve(root,'../..',file));
+}
 const steps=`WORKSHOP DESK — GOOGLE SHEETS SETUP
 
 Target sheet: https://docs.google.com/spreadsheets/d/1a8iv0DDf43OzapWHq3QVR5t9jzSsCHrykgUVSVNLCPA/edit
